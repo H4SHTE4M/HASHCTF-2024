@@ -1,0 +1,16 @@
+FROM node:alpine
+
+WORKDIR /app
+COPY . /app
+
+RUN rm dockerfile
+
+RUN chmod 777 /app/start.sh
+
+RUN echo "flag{test_flag}" > /flag_path
+
+RUN chmod 755 /flag_path
+
+EXPOSE 3000
+
+CMD ["/app/start.sh"]

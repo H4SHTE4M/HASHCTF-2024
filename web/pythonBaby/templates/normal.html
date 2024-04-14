@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Message Manager</title>
+	<link rel="stylesheet" href="/static/css/pico.classless.css">
+	<link rel="stylesheet" href="/static/css/styles.css">
+	<script src="/static/js/index.js"></script>
+</head>
+<body>
+	<main>
+		<section>
+            <h1>{{ username }}, 就你也想拿flag?</h1>
+            <img src="../static/img.png" alt="图个乐"/>
+            <br/><br/>
+            <button id="view">View</button>
+            <br/>
+            <button id="logout">Logout</button>
+            <br/>
+		</section>
+	</main>
+    <script>
+        var buttonView = document.getElementById("view");
+        buttonView.addEventListener('click', function (){
+            window.location.href = "/profile/"+ "{{username}}" +"/view";
+        })
+
+        var buttonLogout = document.getElementById("logout");
+        buttonLogout.addEventListener('click', function (){
+            window.location.href = "/logout";
+        })
+
+    </script>
+
+
+</body>
+</html>

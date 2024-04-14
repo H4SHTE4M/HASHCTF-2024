@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Task Manager</title>
+	<link rel="stylesheet" href="/static/css/pico.classless.css">
+	<link rel="stylesheet" href="/static/css/styles.css">
+	<script src="/static/js/create.js"></script>
+</head>
+<body>
+	<main>
+		<section>
+			<hgroup>
+				<h1>Create a new message</h1>
+				<h2><a id="Back">Back</a></h2>
+			</hgroup>
+			<article>
+                <p id="clock"></p>
+				<form id="create-message-form">
+					<fieldset>
+						<label for="message">Message</label>
+						<textarea id="message" name="message" rows=3  maxlength=150 placeholder="I will Win in HASHCTF"></textarea>
+
+						<label for="status">Status</label>
+						<input type="text" maxlength=50 id="status" name="status" placeholder="good">
+
+					</fieldset>
+					<input type=submit value=Submit>
+				</form>
+			</article>
+		</section>
+	</main>
+    <script>
+
+
+        var BackListen = document.getElementById("Back");
+        BackListen.addEventListener('click', function (){
+            window.location.href = "/profile/admin";
+        })
+
+        document.getElementById("create-message-form").addEventListener("submit", function(event){
+            event.preventDefault();
+
+            var message = document.getElementById("message").value;
+            var status = document.getElementById("status").value;
+
+            var data = {
+                message: message,
+                status: status
+            };
+
+            var jsonData = JSON.stringify(data);
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/profile/admin/edit", true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200){
+                    window.alert("Create Success!");
+                }
+                else if(xhr.status === 500){
+                    window.location.href = "/error";
+                }
+            }
+
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(jsonData);
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+FROM python:alpine
+
+WORKDIR /app
+COPY . /app
+
+
+RUN cd /app && pip install -r requirements.txt
+
+RUN chmod 777 /app/start.sh
+
+RUN echo "flag{test_flag}" > /app/flag_path
+
+RUN chmod 444 /app/flag_path
+
+EXPOSE 5000
+
+# remove the dockerfile
+RUN rm dockerfile
+
+RUN go mod download && go mod verify
+
+RUN go install github.com/pilu/fresh@latest
+
+CMD ["/app/start.sh"]

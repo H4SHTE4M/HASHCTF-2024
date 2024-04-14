@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Message Manager</title>
+	<link rel="stylesheet" href="/static/css/pico.classless.css">
+	<link rel="stylesheet" href="/static/css/styles.css">
+	<script src="/static/js/index.js"></script>
+</head>
+<body>
+	<main>
+		<section>
+			<hgroup>
+                <h1>oh!! admin!!</h1>
+                <h3>既然走到了这一步, 那么应该知道怎么拿flag了吧?</h3>
+                <br/>
+                <button id="edit">Edit</button>
+                <br/>
+                <button id="view">View</button>
+                <br/>
+                <button id="logout">Logout</button>
+                <br/>
+			</hgroup>
+
+			<div id="ongoing-tasks">
+				<article class="task-card shrink"></article>
+			</div>
+		</section>
+		<section id="section-completed" hidden>
+			<details>
+				<summary><b>Completed</b></summary>
+				<div id="completed-tasks">
+					<article class="task-card shrink"></article>
+				</div>
+			</details>
+		</section>
+	</main>
+    <script>
+
+        // edit
+        var buttonEdit = document.getElementById("edit");
+        buttonEdit.addEventListener('click', function (){
+
+            //window.location.href = "create.html";
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("GET", "/profile/admin/edit/api", true);
+
+            xhr.onload = function (){
+                var response = JSON.parse(xhr.responseText);
+                if(response.redirect){
+                    window.location.href = response.redirect;
+                }
+            }
+
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+
+
+        })
+
+        // view
+        var buttonView = document.getElementById("view");
+        buttonView.addEventListener('click', function (){
+            window.location.href = "/profile/admin/view";
+        })
+
+        // logout
+        var buttonLogout = document.getElementById("logout");
+        buttonLogout.addEventListener('click', function(){
+            window.location.href = "/logout";
+        })
+
+    </script>
+
+</body>
+</html>

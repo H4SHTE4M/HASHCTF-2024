@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4">
+                <h2 class="text-center">register</h2>
+                <form id="registerForm">
+                    <div>
+                        <label for="username">username:</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div>
+                        <label for="password">password:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <br/>
+                    <button type="submit" class="btn btn-primary btn-block">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            // get value
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // create data
+            var data = {
+                username: username,
+                password: password
+            };
+
+            // to json
+            var jsonData = JSON.stringify(data);
+
+            // POST
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/register", true);
+
+            xhr.onload = function (){
+                var response = JSON.parse(xhr.responseText);
+                if(response.redirect){
+                    window.location.href = response.redirect;
+                }
+            }
+
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(jsonData);
+
+        });
+    </script>
+</body>
+</html>

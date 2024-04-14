@@ -1,0 +1,24 @@
+{
+  "name": "escape_vm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "randomatic": "^3.1.1",
+    "uuid": "^9.0.1",
+    "vm2": "3.9.15"
+  }
+}

@@ -1,0 +1,37 @@
+FROM golang:1.22
+
+EXPOSE 80
+
+ENV GOPROXY=https://goproxy.io
+
+# add user
+RUN useradd -m ch3
+RUN groupadd -r ctfers
+RUN usermod -aG ctfers ch3
+RUN usermod -aG ctfers root
+
+
+RUN mkdir -p /home/ch3/app && chmod 4777 /home/ch3/app
+
+COPY . /home/ch3/app
+
+WORKDIR /home/ch3/app
+
+RUN chown -R ch3:ctfers /home/ch3
+
+RUN chmod 777 /home/ch3/app/service/start.sh
+
+RUN rm /home/ch3/app/dockerfile
+
+USER ch3
+
+# RUN echo $GZCTF_FLAG > /home/ch3/app/fake_flag_path
+RUN echo "flag{test_flag}" > /home/ch3/app/flag_path
+
+RUN chown ch3:ctfers /home/ch3/app/flag_path
+
+RUN go mod download && go mod verify
+
+RUN go install github.com/pilu/fresh@latest
+
+CMD ["/home/ch3/app/service/start.sh"]
