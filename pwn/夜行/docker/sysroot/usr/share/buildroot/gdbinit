@@ -1,0 +1,2 @@
+add-auto-load-safe-path /opt/mips32el-glibc-bleeding-edge/mipsel-buildroot-linux-gnu/sysroot
+set sysroot /opt/mips32el-glibc-bleeding-edge/mipsel-buildroot-linux-gnu/sysroot
