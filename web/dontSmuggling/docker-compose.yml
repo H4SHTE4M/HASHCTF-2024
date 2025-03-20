@@ -1,0 +1,10 @@
+version: "3"
+services:
+  test:
+    build: ./
+    ports:
+      - "80:8002" 
+    environment:
+      - SERVER_HOSTNAME=test
+      - SERVER_PORT=2333
+      - GZCTF_FLAG="GZCTF_FLAG{TEST_FLAG}"
