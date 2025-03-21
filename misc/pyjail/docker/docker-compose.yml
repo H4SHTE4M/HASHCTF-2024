@@ -1,0 +1,7 @@
+services:
+  pyjail:
+    build: ../
+    ports:
+      # 设置了暴露端口
+      - 9999:9999
+    restart: unless-stopped
