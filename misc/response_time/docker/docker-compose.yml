@@ -1,6 +1,6 @@
 version: '3'
 services:
-  impossible_limit:
+  response_time:
     build: ../
     ports:
       # 设置了暴露端口
